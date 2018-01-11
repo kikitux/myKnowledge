@@ -1,0 +1,20 @@
+---
+- name: restart jenkins
+  service: name=jenkins state=restarted
+
+- name: configure default users
+  template:
+    src: basic-security.groovy
+    dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
+    owner: "{{ jenkins_process_user }}"
+    group: "{{ jenkins_process_group }}"
+    mode: 0775
+  register: jenkins_users_config
+
+- name: configure admin
+  copy:
+    src: /home/jeanlupi/.password-store/n0ts0S3cr3t.tmpl
+    dest: "{{ jenkins_home }}/.n0ts0S3cr3t.rc
+    owner: "{{ jenkins_process_user }}"
+    group: "{{ jenkins_process_group }}"
+register: 
