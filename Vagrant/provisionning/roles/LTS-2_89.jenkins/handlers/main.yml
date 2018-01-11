@@ -14,7 +14,7 @@
 - name: configure admin
   copy:
     src: /home/jeanlupi/.password-store/n0ts0S3cr3t.tmpl
-    dest: "{{ jenkins_home }}/.n0ts0S3cr3t.rc
+    dest: "{{ jenkins_home }}/.n0ts0S3cr3t.rc"
     owner: "{{ jenkins_process_user }}"
     group: "{{ jenkins_process_group }}"
-register: 
+  register: 
